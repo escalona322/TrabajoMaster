@@ -1,7 +1,7 @@
 ﻿@model Apuntado
 <h1>Editar Apuntado</h1>
 <form method="post" class="form-group align-content-center">
-
+    <input type="hidden" name="idinscripcion" value="@Model.IdApuntado"/>
     <div class="input-group my-2">
         <label class="input-group-text">Torneo: </label>
         <input type="text" name="torneo" class="form-control" value="@Model.IdTorneo" />

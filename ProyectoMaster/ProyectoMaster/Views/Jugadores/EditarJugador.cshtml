@@ -1,5 +1,6 @@
 ﻿@model Jugador
 <form method="post" class="form-group align-content-center">
+    <input type="hidden" name="idjugador" value="@Model.IdJugador"/>
     <div class="input-group my-2">
         <label class="input-group-text">Nick: </label>
         <input type="text" name="nick" class="form-control" value="@Model.Nick"/>
