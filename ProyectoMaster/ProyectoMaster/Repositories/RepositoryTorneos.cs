@@ -21,53 +21,87 @@ namespace ProyectoMaster.Repositories
     //   , Nombre, Region, Fecha, Napuntados, Descripcion,
     //   Normas, Tipo, Link from Torneos
     //Go
-//    Alter View V_APUNTADOS_JUGADOR
-//AS
+    //    Alter View V_APUNTADOS_JUGADOR
+    //AS
 
-//    select
-//    CAST(row_number() over(order by idInscripcion) as int) as posicion,
-//	idInscripcion, idTorneo, apuntados.idJugador,
-//	Puesto, Record, Seed, Nombre, Nick, Equipo, Region
-//    from apuntados
-//    inner join Jugadores
+    //    select
+    //    CAST(row_number() over(order by idInscripcion) as int) as posicion,
+    //	idInscripcion, idTorneo, apuntados.idJugador,
+    //	Puesto, Record, Seed, Nombre, Nick, Equipo, Region
+    //    from apuntados
+    //    inner join Jugadores
 
-//    on apuntados.idJugador = Jugadores.idJugador
-//GO
+    //    on apuntados.idJugador = Jugadores.idJugador
+    //GO
 
-//    ALTER PROCEDURE SP_APUNTADOS_JUGADOR
-//    (@idtorneo int, @registros int out, @posicion int)
-//as
-//	select @registros
+    //    ALTER PROCEDURE SP_APUNTADOS_JUGADOR
+    //    (@idtorneo int, @registros int out, @posicion int)
+    //as
+    //	select @registros
 
     //    select* FROM V_APUNTADOS_JUGADOR
     //   where idtorneo = @idtorneo and
 
     //   
     //go
+    // PROCEDURE SETS CON NOMBRE JUGADORES BY IDAPUNTADO
+    //    CREATE PROCEDURE SP_SETS_APUNTADO
+    //    (@IdApuntado int)
+    //as
 
-    //SELECT PARA OBTENER LOS 2 NICKS DE UN SET
-//    select * ,
+    //select sets.idSet, sets.Ganador,
+    //Resultado, Ronda, sets.idTorneo,
+    //(select Nick from Jugadores
+    //inner join apuntados
+    //on Jugadores.idJugador = apuntados.idJugador
+    //where idInscripcion = idApuntado2) as Nick2
+    //,
+    //(select Nick from Jugadores
+    //inner join apuntados
+    //on Jugadores.idJugador = apuntados.idJugador
+    //where idInscripcion = idApuntado1) as Nick1
+    //,
+    //(select Nick from Jugadores
+    //inner join apuntados
+    //on Jugadores.idJugador = apuntados.idJugador
+    //where idInscripcion = Ganador) as NickGanador
+    //from Jugadores
+    //inner join apuntados
+    //on Jugadores.idJugador = apuntados.idJugador
+    //inner join sets
+    //on sets.idApuntado1 = idInscripcion or
+    //sets.idApuntado2 = idInscripcion
+    //where apuntados.IdInscripcion = @IdApuntado
+
+    //go
+    //PROCEDURE GET SETS FORMATEADO BY IDJUGADOR
+//    CREATE PROCEDURE SP_SETS_JUGADOR
+//    (@idjugador int)
+//as
+//	select sets.idSet, sets.Ganador,
+//Resultado, Ronda, sets.idTorneo,
 //(select Nick from Jugadores
 //inner join apuntados
 //on Jugadores.idJugador = apuntados.idJugador
-//where idInscripcion = idApuntado2)
+//where idInscripcion = idApuntado2) as Nick2
 //,
 //(select Nick from Jugadores
 //inner join apuntados
 //on Jugadores.idJugador = apuntados.idJugador
-//where idInscripcion = idApuntado1)
-
-//from Jugadores
-
+//where idInscripcion = idApuntado1) as Nick1
+//,
+//(select Nick from Jugadores
 //inner join apuntados
 //on Jugadores.idJugador = apuntados.idJugador
-
+//where idInscripcion = Ganador) as NickGanador
+//from Jugadores
+//inner join apuntados
+//on Jugadores.idJugador = apuntados.idJugador
 //inner join sets
 //on sets.idApuntado1 = idInscripcion or
-
-//    sets.idApuntado2 = idInscripcion
-
-//where apuntados.IdInscripcion = 10
+//sets.idApuntado2 = idInscripcion
+//where jugadores.idJugador = @idjugador
+//go
 
     #endregion
     public class RepositoryTorneos
@@ -192,6 +226,36 @@ namespace ProyectoMaster.Repositories
         {
             int idmax = this.context.Sets.Max(x => x.IdSet);
             return idmax;
+        }
+
+        public List<VistaSetFormateado> GetSetsFormatByIdApuntado(int idapuntado)
+        {
+            string sql = "SP_SETS_APUNTADO @idapuntado";
+
+            SqlParameter paramidap = new SqlParameter("@idapuntado", idapuntado);
+
+            var consulta =
+                this.context.VistaSetFormateados.FromSqlRaw
+                (sql, paramidap);
+
+            List<VistaSetFormateado> Sets = consulta.ToList();
+
+            return Sets;
+        }
+
+        public List<VistaSetFormateado> GetSetsFormatByIdJugador(int idjugador)
+        {
+            string sql = "SP_SETS_JUGADOR @idjugador";
+
+            SqlParameter paramidap = new SqlParameter("@idjugador", idjugador);
+
+            var consulta =
+                this.context.VistaSetFormateados.FromSqlRaw
+                (sql, paramidap);
+
+            List<VistaSetFormateado> Sets = consulta.ToList();
+
+            return Sets;
         }
         #endregion
 

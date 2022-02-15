@@ -57,5 +57,11 @@ namespace ProyectoMaster.Controllers
                  new {idtorneo = idtorneo}
                 );
         }
+
+        public IActionResult ListaSetsApuntado(int idap)
+        {
+            List<VistaSetFormateado> vistaSets = this.repo.GetSetsFormatByIdApuntado(idap);
+            return View(vistaSets);
+        }
     }
 }
