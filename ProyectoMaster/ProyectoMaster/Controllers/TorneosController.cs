@@ -53,10 +53,34 @@ namespace ProyectoMaster.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult NuevoTorneo(string nombre, string region,
+            DateTime fecha, int napuntados, string descripcion,
+            string normas, string tipo, string link)
+        {
+            int idtorneoMax = this.repo.GetTorneoMaxId();
+            this.repo.InsertTorneo(idtorneoMax, nombre, region, fecha,
+                napuntados, descripcion, normas, tipo, link);
+            return RedirectToAction("ListaTorneos");
+        }
         public IActionResult EditarTorneo(int idtorneo)
         {
             Torneo torneo = this.repo.GetTorneoById(idtorneo);
             return View(torneo);
         }
+
+        [HttpPost]
+        public IActionResult EditarTorneo(int idtorneo, string nombre, 
+            string region, DateTime fecha, int napuntados, 
+            string descripcion, string normas, string tipo,
+            string link)
+        {
+            this.repo.UpdateTorneo(idtorneo, nombre,
+            region, fecha, napuntados, descripcion, 
+            normas, tipo, link);
+            return RedirectToAction("ListaTorneos");
+        }
+       
+
     }
 }

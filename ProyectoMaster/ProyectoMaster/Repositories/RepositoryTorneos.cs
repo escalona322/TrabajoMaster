@@ -106,7 +106,7 @@ namespace ProyectoMaster.Repositories
                            select datos;
             return consulta.ToList();
         }
-        public void InsertTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string tipo, string link)
+        public void InsertTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link)
         {
             Torneo TorneoNuevo = new Torneo
             {
@@ -116,13 +116,14 @@ namespace ProyectoMaster.Repositories
                 Fecha = fecha,
                 Napuntados = napuntados,
                 Descripcion = descripcion,
+                Normas = normas,
                 Tipo = tipo,
                 Link = link
             };
             this.context.Torneos.Add(TorneoNuevo);
             this.context.SaveChanges();
         }
-        public void UpdateTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string tipo, string link)
+        public void UpdateTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link)
         {
             Torneo TorneoEditar = this.GetTorneoById(idtorneo);
             TorneoEditar.Nombre = nombre;
@@ -130,11 +131,17 @@ namespace ProyectoMaster.Repositories
             TorneoEditar.Fecha = fecha;
             TorneoEditar.Napuntados = napuntados;
             TorneoEditar.Descripcion = descripcion;
+            TorneoEditar.Normas = normas;
             TorneoEditar.Tipo = tipo;
             TorneoEditar.Link = link;
             this.context.SaveChanges();
         }
 
+        public int GetTorneoMaxId()
+        {
+            int idmax = this.context.Torneos.Max(x => x.IdTorneo);
+            return idmax;
+        }
         #endregion
 
 
@@ -153,8 +160,6 @@ namespace ProyectoMaster.Repositories
                            select datos;
             return consulta.FirstOrDefault();
         }
-
-
         public void InsertSet(int idset, int ap1, int ap2, int apganador, string resultado, string ronda, int idtorneo)
         {
             Set SetNuevo = new Set
@@ -170,7 +175,6 @@ namespace ProyectoMaster.Repositories
             this.context.Sets.Add(SetNuevo);           
             this.context.SaveChanges();
         }
-
         public void UpdateSet(int idset, int ap1, int ap2, int apganador, string resultado, string ronda, int idtorneo)
         {
             Set SetEditar = this.GetSetById(idset);
@@ -184,7 +188,11 @@ namespace ProyectoMaster.Repositories
             this.context.SaveChanges();
         }
 
-
+        public int GetSetMaxId()
+        {
+            int idmax = this.context.Sets.Max(x => x.IdSet);
+            return idmax;
+        }
         #endregion
 
 
@@ -247,6 +255,11 @@ namespace ProyectoMaster.Repositories
             ApuntadoEditar.Record = record;
             ApuntadoEditar.Seed = seed;
             this.context.SaveChanges();
+        }       
+        public int GetApuntadoMaxId()
+        {
+            int idapMax = this.context.Apuntados.Max(x => x.IdApuntado);
+            return idapMax;
         }
         #endregion
 
@@ -290,6 +303,11 @@ namespace ProyectoMaster.Repositories
             JugadorEditar.Rol = rol;
             JugadorEditar.Equipo = equipo;
             this.context.SaveChanges();
+        }
+        public int GetJugadorMaxId()
+        {
+            int idmax = this.context.Jugadores.Max(x => x.IdJugador);
+            return idmax;
         }
         #endregion
 

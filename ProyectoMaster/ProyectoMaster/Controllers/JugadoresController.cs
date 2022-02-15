@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMaster.Models;
+using ProyectoMaster.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,47 @@ namespace ProyectoMaster.Controllers
 {
     public class JugadoresController : Controller
     {
+        private RepositoryTorneos repo;
+
+        public JugadoresController(RepositoryTorneos repo)
+        {
+            this.repo = repo;
+        }
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult NuevoJugador()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult NuevoJugador(string nick,
+            string region, string nombre, string email,
+            string rol, string equipo)
+        {
+            int idjugMax = this.repo.GetJugadorMaxId();
+            this.repo.InsertJugador(idjugMax, nick,
+            region, nombre, email, rol, equipo);
+            return RedirectToAction("ListaJugadores");
+        }
+
+        public IActionResult EditarJugador(int idjugador)
+        {
+            Jugador jugadorEditar = this.repo.GetJugadorById(idjugador);
+            return View(jugadorEditar);
+        }
+
+        [HttpPost]
+        public IActionResult EditarJugador(int idjugador,
+            string nick, string region, string nombre, 
+            string email, string rol, string equipo)
+        {
+            this.repo.UpdateJugador(idjugador,
+               nick, region, nombre,
+               email, rol, equipo);
+            return RedirectToAction("ListaJugadores");
         }
     }
 }

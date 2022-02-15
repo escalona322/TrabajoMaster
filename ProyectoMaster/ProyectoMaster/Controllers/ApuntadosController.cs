@@ -24,15 +24,40 @@ namespace ProyectoMaster.Controllers
             return View(apuntados);
         }
 
-        public IActionResult ListaTestVAp(int idtorneo, int? posicion)
+        public IActionResult NuevoApuntado()
         {
-            if(posicion == null)
-            {
-                posicion = 1;
-            }
-  
-            List<VistaApuntadosJugadores> Vapuntados = this.repo.GetVApuntadosByTorneo(idtorneo);
-            return View(Vapuntados);
+            return View();
+        }
+        [HttpPost]
+        public IActionResult NuevoApuntado(
+            int idtorneo, int idjugador, int puesto, 
+            string record, int seed)
+        {
+            int idapMax = this.repo.GetApuntadoMaxId();
+            this.repo.InsertApuntado(idapMax, idtorneo,
+            idjugador, puesto, record, seed);
+
+            return RedirectToAction("ListaApuntadosTorneo",
+                new { idtorneo = idtorneo}
+                );
+        }
+        public IActionResult EditarApuntado(int idapuntado)
+        {
+            Apuntado apuntadoEditar = this.repo.GetApuntadoById(idapuntado);
+            return View(apuntadoEditar);
+        }
+
+        [HttpPost]
+        public IActionResult EditarApuntado(int idinscripcion,
+            int idtorneo, int idjugador, int puesto,
+            string record, int seed)
+        {
+            this.repo.UpdateApuntado(idinscripcion,
+            idtorneo, idjugador, puesto,
+            record, seed);
+            return RedirectToAction("ListaApuntadosTorneo",
+                    new {idtorneo = idtorneo}
+                );
         }
     }
 }
