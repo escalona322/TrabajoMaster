@@ -1,0 +1,29 @@
+﻿@model Apuntado
+<h1>Editar Apuntado</h1>
+<form method="post" class="form-group align-content-center">
+
+    <div class="input-group my-2">
+        <label class="input-group-text">Torneo: </label>
+        <input type="text" name="torneo" class="form-control" value="@Model.IdTorneo" />
+    </div>
+    <div class="input-group my-2">
+        <label class="input-group-text">Jugador: </label>
+        <input type="text" name="jugador" class="form-control" value="@Model.IdJugador" />
+    </div>
+    <div class="input-group my-2">
+        <label class="input-group-text">Puesto: </label>
+        <input type="date" name="puesto" class="form-control" value="@Model.Puesto" />
+    </div>
+    <div class="input-group my-2">
+        <label class="input-group-text">Record: </label>
+        <input type="number" name="record" class="form-control" value="@Model.Record" />
+    </div>
+  
+    <div class="input-group my-2">
+        <label class="input-group-text">Seed: </label>
+        <input type="text" name="seed" class="form-control" value="@Model.Seed" />
+    </div>
+    <button type="submit" class="btn btn-outline-info form-control">
+        Enviar
+    </button>
+</form>

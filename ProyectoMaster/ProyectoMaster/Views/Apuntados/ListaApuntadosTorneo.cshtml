@@ -1,1 +1,29 @@
-﻿
+﻿@model List<VistaApuntadosJugadores>
+<div class="container">
+    <h1 class="text-center">
+        Lista apuntados torneos
+    </h1>
+    @foreach (VistaApuntadosJugadores vista in @Model)
+    {
+        <div class="row my-1 border border-primary">
+            <div class="container">
+                @if (vista.Equipo != null)
+                {
+                    <span style="color:dimgrey">@vista.Equipo | </span>
+                }
+                <span>@vista.Nick</span>
+                <a asp-controller="Sets"
+                   asp-action="ListaSetsApuntado"
+                   asp-route-idap="@vista.IdApuntado">
+                    ListaSetApuntado
+                </a>
+                <a asp-controller="Jugador"
+                   asp-action="DatosJugador"
+                   asp-route-idjug="@vista.IdJugador">
+                    DatosJugador
+                </a>
+            </div>
+        </div>
+    }
+
+</div>

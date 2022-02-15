@@ -21,6 +21,8 @@ namespace ProyectoMaster.Models
         public string Nombre { get; set; }
         [Column("EMAIL")]
         public string Email { get; set; }
+        [Column("PASSWORD")]
+        public string Password { get; set; }
         [Column("ROL")]
         public string Rol { get; set; }
         [Column("EQUIPO")]

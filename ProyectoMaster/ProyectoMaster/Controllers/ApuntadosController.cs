@@ -20,8 +20,8 @@ namespace ProyectoMaster.Controllers
 
         public IActionResult ListaApuntadosTorneo(int idtorneo)
         {
-            List<Apuntado> apuntados = this.repo.GetApuntadosByTorneo(idtorneo);
-            return View();
+            List<VistaApuntadosJugadores> apuntados = this.repo.GetVApuntadosByTorneo(idtorneo);
+            return View(apuntados);
         }
 
         public IActionResult ListaTestVAp(int idtorneo, int? posicion)

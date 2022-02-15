@@ -42,8 +42,33 @@ namespace ProyectoMaster.Repositories
     //    select* FROM V_APUNTADOS_JUGADOR
     //   where idtorneo = @idtorneo and
 
-    //    posicion >= @posicion and posicion<(@posicion + 20)
+    //   
     //go
+
+    //SELECT PARA OBTENER LOS 2 NICKS DE UN SET
+//    select * ,
+//(select Nick from Jugadores
+//inner join apuntados
+//on Jugadores.idJugador = apuntados.idJugador
+//where idInscripcion = idApuntado2)
+//,
+//(select Nick from Jugadores
+//inner join apuntados
+//on Jugadores.idJugador = apuntados.idJugador
+//where idInscripcion = idApuntado1)
+
+//from Jugadores
+
+//inner join apuntados
+//on Jugadores.idJugador = apuntados.idJugador
+
+//inner join sets
+//on sets.idApuntado1 = idInscripcion or
+
+//    sets.idApuntado2 = idInscripcion
+
+//where apuntados.IdInscripcion = 10
+
     #endregion
     public class RepositoryTorneos
     {
