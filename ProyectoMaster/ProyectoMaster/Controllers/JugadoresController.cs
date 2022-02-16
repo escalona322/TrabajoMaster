@@ -16,9 +16,20 @@ namespace ProyectoMaster.Controllers
         {
             this.repo = repo;
         }
-        public IActionResult Index()
+        public IActionResult ListaJugadores()
         {
-            return View();
+            List<Jugador> Jugadores = this.repo.GetJugadores();
+            return View(Jugadores);
+        }
+
+        public IActionResult PerfilJugador(int idjugador)
+        {
+            List<Torneo> TorneosJugador = this.repo.GetTorneosByIdJugador(idjugador);
+            List<VistaSetFormateado> Sets = this.repo.GetSetsFormatByIdJugador(idjugador);
+            Jugador jug = this.repo.GetJugadorById(idjugador);
+            ViewData["SETS"] = Sets;
+            ViewData["TORNEOS"] = TorneosJugador;
+            return View(jug);
         }
 
         public IActionResult NuevoJugador()

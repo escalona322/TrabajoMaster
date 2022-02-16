@@ -11,7 +11,7 @@ namespace ProyectoMaster.Models
     public class Jugador
     {
         [Key]
-        [Column("IDJUGADDOR")]
+        [Column("IDJUGADOR")]
         public int IdJugador { get; set; }
         [Column("NICK")]
         public string Nick { get; set; }
