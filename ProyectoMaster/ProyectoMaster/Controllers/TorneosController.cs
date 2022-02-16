@@ -23,7 +23,7 @@ namespace ProyectoMaster.Controllers
                 posicion = 1;
             }
             int MaxRegistro = this.repo.GetNumeroTorneos();
-            ViewData["ULTIMO"] = MaxRegistro;
+            ViewData["REGISTROS"] = MaxRegistro;
             int siguiente = posicion.Value + 1;
             if (siguiente > MaxRegistro)
             {

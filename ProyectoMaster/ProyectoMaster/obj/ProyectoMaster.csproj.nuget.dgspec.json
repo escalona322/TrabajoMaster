@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AlumnoMCSD\\source\\repos\\TrabajoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj": {}
+    "D:\\TrabajosMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AlumnoMCSD\\source\\repos\\TrabajoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj": {
+    "D:\\TrabajosMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AlumnoMCSD\\source\\repos\\TrabajoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj",
+        "projectUniqueName": "D:\\TrabajosMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj",
         "projectName": "ProyectoMaster",
-        "projectPath": "C:\\Users\\AlumnoMCSD\\source\\repos\\TrabajoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj",
-        "packagesPath": "C:\\Users\\AlumnoMCSD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AlumnoMCSD\\source\\repos\\TrabajoMaster\\ProyectoMaster\\ProyectoMaster\\obj\\",
+        "projectPath": "D:\\TrabajosMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster.csproj",
+        "packagesPath": "C:\\Users\\anton\\.nuget\\packages\\",
+        "outputPath": "D:\\TrabajosMaster\\ProyectoMaster\\ProyectoMaster\\ProyectoMaster\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\AlumnoMCSD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\anton\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -76,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -176,6 +176,31 @@ namespace ProyectoMaster.Repositories
             int idmax = this.context.Torneos.Max(x => x.IdTorneo);
             return idmax;
         }
+
+        public List<Torneo> GetTorneosByIdJugador(int idjugador)
+        {
+            string sql = "SP_TORNEOS_JUGADOR @idjugador";
+
+            SqlParameter paramidtorneo = new SqlParameter("@idjugador", idjugador);
+
+            var consulta =
+                this.context.Torneos.FromSqlRaw
+                (sql, paramidtorneo);
+
+            List<Torneo> Torneos = consulta.ToList();
+
+            return Torneos;
+        }
+
+        public int GetNApuntadosTorneo(int idtorneo)
+        {
+            var consulta = from datos in this.context.Torneos
+                           where datos.IdTorneo == idtorneo
+                           select datos.Napuntados;
+
+            return consulta.FirstOrDefault();
+                           
+        }
         #endregion
 
 
@@ -275,16 +300,18 @@ namespace ProyectoMaster.Repositories
             return consulta.ToList();
         }
 
-        public List<VistaApuntadosJugadores> GetVApuntadosByTorneo(int idtorneo)
+        public List<VistaApuntadosJugadores> GetVApuntadosByTorneo(int idtorneo, int posicion)
         {
-            string sql = "SP_APUNTADOS_JUGADOR @idtorneo";
+            string sql = "SP_APUNTADOS_JUGADOR @idtorneo, @POSICION";
            
             SqlParameter paramidtorneo = new SqlParameter("@idtorneo", idtorneo);
-           
+            SqlParameter parampos = new SqlParameter("@POSICION", posicion);
+      
+
             var consulta =
                 this.context.VistaApJug.FromSqlRaw
-                (sql, paramidtorneo);
-
+                (sql, paramidtorneo, parampos);
+        
             List<VistaApuntadosJugadores> VApuntados = consulta.ToList();
         
             return VApuntados;

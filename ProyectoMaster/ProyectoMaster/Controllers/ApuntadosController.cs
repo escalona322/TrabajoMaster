@@ -18,9 +18,29 @@ namespace ProyectoMaster.Controllers
             this.repo = repo;
         }
 
-        public IActionResult ListaApuntadosTorneo(int idtorneo)
+        public IActionResult ListaApuntadosTorneo(int idtorneo, int? posicion)
         {
-            List<VistaApuntadosJugadores> apuntados = this.repo.GetVApuntadosByTorneo(idtorneo);
+           
+            if(posicion == null)
+            {
+                posicion = 0;
+            }
+            ViewData["POSICIONACTUAL"] = posicion;
+            ViewData["IDTORNEO"] = idtorneo;
+            int Napuntados = this.repo.GetNApuntadosTorneo(idtorneo);
+            ViewData["NAPUNTADOS"] = Napuntados;
+            int siguiente = posicion.Value + 20;
+            int anterior = posicion.Value - 20;
+            if(siguiente > Napuntados)
+            {
+                siguiente = Napuntados;
+            }
+            if(anterior < 1)
+            {
+                anterior = 1;
+            }
+
+            List<VistaApuntadosJugadores> apuntados = this.repo.GetVApuntadosByTorneo(idtorneo, posicion.Value);
             return View(apuntados);
         }
 

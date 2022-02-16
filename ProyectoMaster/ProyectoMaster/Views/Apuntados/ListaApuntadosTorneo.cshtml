@@ -3,6 +3,55 @@
     <h1 class="text-center">
         Lista apuntados torneos
     </h1>
+    @{
+        int pos = (int)ViewData["POSICIONACTUAL"];
+        int idtorneo = (int)ViewData["IDTORNEO"];
+        int napuntados = (int)ViewData["NAPUNTADOS"];
+        int siguiente = pos + 20;
+        int anterior = pos - 20;
+            }
+<div class="row">
+    <div class="col-2">
+        <a asp-controller="Apuntados"
+           asp-action="ListaApuntadosTorneo"
+           asp-route-skip="1"
+           asp-route-idtorneo="@idtorneo"
+           class="btn btn-danger">
+            <<
+        </a>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Apuntados"
+           asp-action="ListaApuntadosTorneo"
+           asp-route-skip="@anterior"
+           asp-route-idtorneo="@idtorneo"
+           class="btn btn-warning">
+            <
+        </a>
+    </div>
+    <div class="col-4">
+        <h3>
+            Apuntados registrados: @napuntados
+        </h3>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Apuntados"
+           asp-action="ListaApuntadosTorneo"
+           asp-route-skip="@siguiente"
+           asp-route-idtorneo="@idtorneo"
+           class="btn btn-warning mx-5">
+            >
+        </a>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Apuntados"
+           asp-action="ListaApuntadosTorneo"
+           asp-route-skip="@napuntados"
+           asp-route-idtorneo="@idtorneo"
+           class="btn btn-success">
+            >>
+        </a>
+    </div>
     @foreach (VistaApuntadosJugadores vista in @Model)
     {
         <div class="row my-1 border border-primary">

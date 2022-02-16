@@ -1,3 +1,35 @@
-﻿<div>
+﻿@model Jugador
+@{
+    List<Torneo> torneos = new List<Torneo>();
+    foreach(Torneo torneo in (IEnumerable<Torneo>)ViewData["TORNEOS"])
+    {
+        torneos.Add(torneo);
+    }
 
+    List<VistaSetFormateado> sets = new List<VistaSetFormateado>();
+    foreach (VistaSetFormateado set in (IEnumerable<VistaSetFormateado>)ViewData["SETS"])
+    {
+        sets.Add(set);
+    }
+
+            }
+
+<div class="row">
+    <div class="col-2">
+        Cosas jugador @Model.Nick
+    </div>
+    <div class="col-10">
+           <div class="row">
+               @foreach(VistaSetFormateado set in sets)
+            {
+                <span>@set.Nick1</span>
+            }
+           </div>
+           <div class="row">
+               @foreach (Torneo tor in torneos)
+               {
+                   <span>@tor.Nombre</span>
+               }
+           </div>
+    </div>
 </div>
