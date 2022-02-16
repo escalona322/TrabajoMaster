@@ -4,17 +4,18 @@
         Lista apuntados torneos
     </h1>
     @{
-        int pos = (int)ViewData["POSICIONACTUAL"];
         int idtorneo = (int)ViewData["IDTORNEO"];
         int napuntados = (int)ViewData["NAPUNTADOS"];
-        int siguiente = pos + 20;
-        int anterior = pos - 20;
+        int ultimapos = napuntados - 19;
+        int siguiente = (int)ViewData["SIGUIENTE"];
+        int anterior = (int)ViewData["ANTERIOR"];
+        int posicion = (int)ViewData["POSICION"];
             }
 <div class="row">
     <div class="col-2">
         <a asp-controller="Apuntados"
            asp-action="ListaApuntadosTorneo"
-           asp-route-skip="1"
+           asp-route-posicion="1"
            asp-route-idtorneo="@idtorneo"
            class="btn btn-danger">
             <<
@@ -23,7 +24,7 @@
     <div class="col-2">
         <a asp-controller="Apuntados"
            asp-action="ListaApuntadosTorneo"
-           asp-route-skip="@anterior"
+           asp-route-posicion="@anterior"
            asp-route-idtorneo="@idtorneo"
            class="btn btn-warning">
             <
@@ -31,13 +32,13 @@
     </div>
     <div class="col-4">
         <h3>
-            Apuntados registrados: @napuntados
+            @posicion - @siguiente de @napuntados
         </h3>
     </div>
     <div class="col-2">
         <a asp-controller="Apuntados"
            asp-action="ListaApuntadosTorneo"
-           asp-route-skip="@siguiente"
+           asp-route-posicion="@siguiente"
            asp-route-idtorneo="@idtorneo"
            class="btn btn-warning mx-5">
             >
@@ -46,12 +47,13 @@
     <div class="col-2">
         <a asp-controller="Apuntados"
            asp-action="ListaApuntadosTorneo"
-           asp-route-skip="@napuntados"
+           asp-route-posicion="@ultimapos"
            asp-route-idtorneo="@idtorneo"
            class="btn btn-success">
             >>
         </a>
     </div>
+</div>
     @foreach (VistaApuntadosJugadores vista in @Model)
     {
         <div class="row my-1 border border-primary">

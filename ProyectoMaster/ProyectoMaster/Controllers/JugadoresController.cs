@@ -16,9 +16,31 @@ namespace ProyectoMaster.Controllers
         {
             this.repo = repo;
         }
-        public IActionResult ListaJugadores()
+        public IActionResult ListaJugadores(int? posicion)
         {
-            List<Jugador> Jugadores = this.repo.GetJugadores();
+
+            if (posicion == null)
+            {
+                posicion = 1;
+            }
+
+
+            int NJugadores = this.repo.GetNJugadores();
+            ViewData["NJUGADORES"] = NJugadores;
+            int siguiente = posicion.Value + 25;
+            int anterior = posicion.Value - 25;
+            if (siguiente >= NJugadores)
+            {
+                siguiente = NJugadores;
+            }
+            if (anterior < 1)
+            {
+                anterior = 1;
+            }
+            ViewData["POSICION"] = posicion;
+            ViewData["SIGUIENTE"] = siguiente;
+            ViewData["ANTERIOR"] = anterior;
+            List<VistaJugadores> Jugadores = this.repo.GetVistaJugadores(posicion.Value);
             return View(Jugadores);
         }
 

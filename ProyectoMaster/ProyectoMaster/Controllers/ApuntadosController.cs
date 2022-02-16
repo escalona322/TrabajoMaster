@@ -23,15 +23,15 @@ namespace ProyectoMaster.Controllers
            
             if(posicion == null)
             {
-                posicion = 0;
+                posicion = 1;
             }
-            ViewData["POSICIONACTUAL"] = posicion;
+       
             ViewData["IDTORNEO"] = idtorneo;
             int Napuntados = this.repo.GetNApuntadosTorneo(idtorneo);
             ViewData["NAPUNTADOS"] = Napuntados;
             int siguiente = posicion.Value + 20;
             int anterior = posicion.Value - 20;
-            if(siguiente > Napuntados)
+            if(siguiente >= Napuntados)
             {
                 siguiente = Napuntados;
             }
@@ -40,6 +40,9 @@ namespace ProyectoMaster.Controllers
                 anterior = 1;
             }
 
+            ViewData["SIGUIENTE"] = siguiente;
+            ViewData["ANTERIOR"] = anterior;
+            ViewData["POSICION"] = posicion;
             List<VistaApuntadosJugadores> apuntados = this.repo.GetVApuntadosByTorneo(idtorneo, posicion.Value);
             return View(apuntados);
         }

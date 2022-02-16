@@ -1,16 +1,64 @@
-﻿@model List<Jugador>
+﻿@model List<VistaJugadores>
+@{
+ 
+    int napuntados = (int)ViewData["NJUGADORES"];
+    int ultimapos = napuntados - 24;
+    int siguiente = (int)ViewData["SIGUIENTE"];
+    int anterior = (int)ViewData["ANTERIOR"];
+    int posicion = (int)ViewData["POSICION"];
+}
+<div class="row">
+    <div class="col-2">
+        <a asp-controller="Jugadores"
+           asp-action="ListaJugadores"
+           asp-route-posicion="1"
+          
+           class="btn btn-danger">
+            <<
+        </a>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Jugadores"
+           asp-action="ListaJugadores"
+           asp-route-posicion="@anterior"
+           class="btn btn-warning">
+            <
+        </a>
+    </div>
+    <div class="col-4">
+        <h3>
+           @posicion - @siguiente de @napuntados
+        </h3>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Jugadores"
+           asp-action="ListaJugadores"
+           asp-route-posicion="@siguiente"
+           class="btn btn-warning mx-5">
+            >
+        </a>
+    </div>
+    <div class="col-2">
+        <a asp-controller="Jugadores"
+           asp-action="ListaJugadores"
+           asp-route-posicion="@ultimapos"
+           class="btn btn-success">
+            >>
+        </a>
+    </div>
+</div>
 
-@foreach (Jugador jug in @Model)
+@foreach (VistaJugadores jug in @Model)
 {
     <div class="row my-3 border border-danger">
         <div class="col my-3">
             <span style="font-size: 1.20em; font-weight: bold;">
                 Nick:
-                @if(jug.Equipo != null)
+                @if (jug.Equipo != null)
                 {
-                <span> @jug.Equipo |</span>
+                    <span> @jug.Equipo |</span>
                 }
-                    @jug.Nick
+                @jug.Nick
             </span>
         </div>
         <div class="col my-3">
@@ -22,14 +70,13 @@
         <div class="col my-3">
             <span style="font-size:1.20em; font-weight:bold; color: limegreen"> Email: @jug.Email</span>
         </div>
-   
+
         <div class="col-1 my-3">
             <a class="btn btn-outline-danger"
                asp-controller="Jugadores"
                asp-action="PerfilJugador"
-               asp-route-idjugador="@jug.IdJugador"
-             >
-                 Perfil 
+               asp-route-idjugador="@jug.IdJugador">
+                Perfil
             </a>
 
         </div>

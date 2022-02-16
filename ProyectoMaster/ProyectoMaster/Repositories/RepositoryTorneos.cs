@@ -362,6 +362,29 @@ namespace ProyectoMaster.Repositories
                            select datos;
             return consulta.ToList();
         }
+        public int GetNJugadores()
+        {
+            var consulta = from datos in this.context.Jugadores        
+                           select datos;
+            int numjugadores = consulta.ToList().Count();
+            return numjugadores;
+        }
+        public List<VistaJugadores> GetVistaJugadores(int posicion) 
+        {
+            string sql = "SP_JUGADOR  @POSICION";
+
+          
+            SqlParameter parampos = new SqlParameter("@POSICION", posicion);
+
+
+            var consulta =
+                this.context.VistaJugadores.FromSqlRaw
+                (sql, parampos);
+
+            List<VistaJugadores> VJugadores = consulta.ToList();
+
+            return VJugadores;
+        }
         public Jugador GetJugadorById(int idjugador)
         {
             var consulta = from datos in this.context.Jugadores
