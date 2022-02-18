@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProyectoMaster.Filters;
 using ProyectoMaster.Models;
 using ProyectoMaster.Repositories;
 using System;
@@ -47,6 +48,7 @@ namespace ProyectoMaster.Controllers
             return View(apuntados);
         }
 
+        [AuthorizeJugadores]
         public IActionResult NuevoApuntado()
         {
             return View();

@@ -477,3 +477,6 @@ C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj
 C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Sets\EditarSet.cshtml.g.cs
 C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Sets\ListaSetsApuntado.cshtml.g.cs
 D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Jugadores\PerfilJugador.cshtml.g.cs
+C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Jugadores\PerfilJugador.cshtml.g.cs
+C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Managed\ErrorAcceso.cshtml.g.cs
+C:\Users\AlumnoMCSD\source\repos\TrabajoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Managed\LogIn.cshtml.g.cs

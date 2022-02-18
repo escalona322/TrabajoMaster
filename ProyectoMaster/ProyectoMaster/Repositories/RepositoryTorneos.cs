@@ -423,6 +423,15 @@ namespace ProyectoMaster.Repositories
             int idmax = this.context.Jugadores.Max(x => x.IdJugador);
             return idmax;
         }
+
+        public Jugador ExisteJugador(string email, string password)
+        {
+            var consulta = from datos in this.context.Jugadores
+                           where datos.Email == email
+                           && datos.Password == password
+                           select datos;
+            return consulta.SingleOrDefault();
+        }
         #endregion
 
 
