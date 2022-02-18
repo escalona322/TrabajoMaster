@@ -140,7 +140,7 @@ namespace ProyectoMaster.Repositories
                            select datos;
             return consulta.ToList();
         }
-        public void InsertTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link)
+        public void InsertTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link, string foto)
         {
             Torneo TorneoNuevo = new Torneo
             {
@@ -152,12 +152,13 @@ namespace ProyectoMaster.Repositories
                 Descripcion = descripcion,
                 Normas = normas,
                 Tipo = tipo,
-                Link = link
+                Link = link,
+                Foto = foto
             };
             this.context.Torneos.Add(TorneoNuevo);
             this.context.SaveChanges();
         }
-        public void UpdateTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link)
+        public void UpdateTorneo(int idtorneo, string nombre, string region, DateTime fecha, int napuntados, string descripcion, string normas, string tipo, string link, string foto)
         {
             Torneo TorneoEditar = this.GetTorneoById(idtorneo);
             TorneoEditar.Nombre = nombre;
@@ -168,6 +169,7 @@ namespace ProyectoMaster.Repositories
             TorneoEditar.Normas = normas;
             TorneoEditar.Tipo = tipo;
             TorneoEditar.Link = link;
+            TorneoEditar.Foto = foto;
             this.context.SaveChanges();
         }
 

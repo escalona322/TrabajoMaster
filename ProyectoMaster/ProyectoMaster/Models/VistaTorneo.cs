@@ -29,6 +29,8 @@ namespace ProyectoMaster.Models
         public string Tipo { get; set; }
         [Column("LINK")]
         public string Link { get; set; }
+        [Column("FOTO")]
+        public string Foto { get; set; }
         [Column("POSICION")]
         public int Posicion { get; set; }
 

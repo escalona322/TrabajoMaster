@@ -4,6 +4,7 @@
     int ultpos = maxregistros - 1;
     int siguiente = (int)ViewData["SIGUIENTE"];
     int anterior = (int)ViewData["ANTERIOR"];
+    int posicion = (int)ViewData["POSICION"];
 }
 
 <div class="container">
@@ -26,7 +27,7 @@
         </div>
         <div class="col-4">
             <h3>
-              Torneos registrados: @maxregistros
+                @posicion - @siguiente de @maxregistros
             </h3>
         </div>
         <div class="col-2">
@@ -45,17 +46,17 @@
                 >>
             </a>
         </div>
-     
-        
-        
-      
+
+
+
+
     </div>
     <div class="row my-5">
         @foreach (VistaTorneo torneo in Model)
         {
             <div class="col-6">
                 <div class="card" >
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="~/images/@torneo.Foto" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">@torneo.Nombre Torneo: @torneo.Tipo  </h3>
                         <h4> @torneo.Region</h4>
