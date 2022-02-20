@@ -39,9 +39,11 @@ namespace ProyectoMaster.Controllers
                );
         }
 
-        public IActionResult NuevoSet()
+        public IActionResult NuevoSet(int idtorneo)
         {
-            return View();
+            ViewData["IDTORNEO"] = idtorneo;
+            List<VistaApuntadosTorneo> apuntados = this.repo.GetVApuntadosByTorneoNoPag(idtorneo);
+            return View(apuntados);
         }
 
         [HttpPost]
@@ -49,12 +51,12 @@ namespace ProyectoMaster.Controllers
             int apganador, string resultado, string ronda,
             int idtorneo)
         {
-            int idsetMax = this.repo.GetSetMaxId();
+            int idsetMax = this.repo.GetSetMaxId()+1;
             this.repo.InsertSet(idsetMax, ap1, ap2,
             apganador, resultado, ronda,
             idtorneo);
-            return RedirectToAction("ListaSetsTorneo",
-                 new {idtorneo = idtorneo}
+            return RedirectToAction("ListaSetsApuntado",
+                 new {idap = apganador}
                 );
         }
 

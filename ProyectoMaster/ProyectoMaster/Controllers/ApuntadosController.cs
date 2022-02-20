@@ -45,23 +45,30 @@ namespace ProyectoMaster.Controllers
             ViewData["ANTERIOR"] = anterior;
             ViewData["POSICION"] = posicion;
             List<VistaApuntadosJugadores> apuntados = this.repo.GetVApuntadosByTorneo(idtorneo, posicion.Value);
+      
+            return View(apuntados);
+        }
+        public IActionResult ListaApuntadosAdmin()
+        {
+            List<VistaApuntadosTorneo> apuntados = this.repo.GetVApuntados();
             return View(apuntados);
         }
 
         [AuthorizeJugadores]
-        public IActionResult NuevoApuntado()
+        public IActionResult NuevoApuntado(int idtorneo)
         {
-            return View();
+            Torneo torneo = this.repo.GetTorneoById(idtorneo);
+            return View(torneo);
         }
         [HttpPost]
         public IActionResult NuevoApuntado(
             int idtorneo, int idjugador, int puesto, 
             string record, int seed)
         {
-            int idapMax = this.repo.GetApuntadoMaxId();
+            int idapMax = this.repo.GetApuntadoMaxId()+1;
             this.repo.InsertApuntado(idapMax, idtorneo,
             idjugador, puesto, record, seed);
-
+            this.repo.SumarApuntado(idtorneo);
             return RedirectToAction("ListaApuntadosTorneo",
                 new { idtorneo = idtorneo}
                 );
@@ -80,9 +87,13 @@ namespace ProyectoMaster.Controllers
             this.repo.UpdateApuntado(idinscripcion,
             idtorneo, idjugador, puesto,
             record, seed);
-            return RedirectToAction("ListaApuntadosTorneo",
-                    new {idtorneo = idtorneo}
-                );
+            return RedirectToAction("ListaApuntadosAdmin");
+        }
+
+        public IActionResult EliminarApuntado(int idapuntado)
+        {
+            this.repo.DeleteApuntado(idapuntado);
+            return RedirectToAction("ListaApuntadosAdmin");
         }
     }
 }

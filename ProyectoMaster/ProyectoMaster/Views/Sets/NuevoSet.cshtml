@@ -1,27 +1,53 @@
-﻿<form method="post" class="form-group align-content-center">
+﻿@model List<VistaApuntadosTorneo>
+<form method="post" class="form-group align-content-center">
     <div class="input-group my-2">
-        <label class="input-group-text">Jugador1: </label>
-        <input type="text" name="jugador1" class="form-control" />
+        <label class="input-group-text">Jugador 1</label>
+        <select name="ap1" class="form-control">
+            @foreach(VistaApuntadosTorneo vista in @Model)
+            {
+                <option value="@vista.IdApuntado">
+                    @vista.Nick
+                </option>
+            }
+        </select>
+       
     </div>
     <div class="input-group my-2">
-        <label class="input-group-text">Jugador2: </label>
-        <input type="text" name="jugador2" class="form-control" />
+        <label class="input-group-text">Jugador 2</label>
+        <select name="ap2" class="form-control">
+            @foreach (VistaApuntadosTorneo vista in @Model)
+            {
+                <option value="@vista.IdApuntado">
+                    @vista.Nick
+                </option>
+            }
+        </select>
     </div>
     <div class="input-group my-2">
-        <label class="input-group-text">Ganador: </label>
-        <input type="date" name="ganador" class="form-control" />
+        <label class="input-group-text">Ganador</label>
+        <select name="apganador" class="form-control">
+            @foreach (VistaApuntadosTorneo vista in @Model)
+            {
+                <option value="@vista.IdApuntado">
+                    @vista.Nick
+                </option>
+            }
+        </select>
+
     </div>
     <div class="input-group my-2">
         <label class="input-group-text">Resultado: </label>
-        <input type="number" name="resultado" class="form-control" />
+        <input type="text" name="resultado" class="form-control" />
     </div>
     <div class="input-group my-2">
         <label class="input-group-text">Ronda: </label>
-        <input type="text" name="tipo" class="form-control" />
+        <input type="text" name="ronda" class="form-control" />
     </div>
     <div class="input-group my-2">
-        <label class="input-group-text">Torneo: </label>
-        <input type="text" name="torneo" class="form-control" />
+        @{ 
+            int idtorneo = (int)ViewData["IDTORNEO"];
+        }
+        <input type="hidden" name="torneo" class="form-control" value="@idtorneo"/>
     </div>
     <button type="submit" class="btn btn-outline-info form-control">
         Enviar

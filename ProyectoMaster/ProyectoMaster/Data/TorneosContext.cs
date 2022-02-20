@@ -23,5 +23,6 @@ namespace ProyectoMaster.Data
         public DbSet<VistaApuntadosJugadores> VistaApJug { get; set; }
         public DbSet<VistaSetFormateado> VistaSetFormateados { get; set; }
         public DbSet<VistaJugadores> VistaJugadores { get; set; }
+        public DbSet<VistaApuntadosTorneo> VistaApTor { get; set; }
     }
 }

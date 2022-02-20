@@ -24,9 +24,18 @@
         </div>
        
     </form>
+    <div>
+        No tienes cuenta? <a asp-controller="Jugadores"
+                             asp-action="NuevoJugador"
+                             >
+        Registrarse
+        
+        </a>
+    </div>
     <h1 class="text-center" style="color:red">
         @ViewData["MENSAJE"]
     </h1>
 </div>
+
 
 

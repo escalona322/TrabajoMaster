@@ -26,7 +26,7 @@ namespace ProyectoMaster.Helpers
             {
                 await formFile.CopyToAsync(stream);
             }
-            return path;
+            return fileName;
         }
     }
 }

@@ -179,6 +179,21 @@ namespace ProyectoMaster.Repositories
             return idmax;
         }
 
+        public void SumarApuntado(int idtorneo)
+        {
+            Torneo TorneoEditar = this.GetTorneoById(idtorneo);
+            TorneoEditar.Napuntados += 1;
+            this.context.SaveChanges();
+
+        }
+
+        public void DeleteTorneo(int idtorneo)
+        {
+            Torneo torneoelim = this.GetTorneoById(idtorneo);
+            this.context.Torneos.Remove(torneoelim);
+            this.context.SaveChanges();
+        }
+
         public List<Torneo> GetTorneosByIdJugador(int idjugador)
         {
             string sql = "SP_TORNEOS_JUGADOR @idjugador";
@@ -318,6 +333,20 @@ namespace ProyectoMaster.Repositories
         
             return VApuntados;
         }
+
+        public List<VistaApuntadosTorneo> GetVApuntadosByTorneoNoPag(int idtorneo)
+        {
+            var consulta = from datos in this.context.VistaApTor
+                           where datos.IdTorneo == idtorneo
+                           select datos;
+            return consulta.ToList();
+        }
+        public List<VistaApuntadosTorneo> GetVApuntados()
+        {
+            var consulta = from datos in this.context.VistaApTor                 
+                           select datos;
+            return consulta.ToList();
+        }
         public Apuntado GetApuntadoById(int idapuntado)
         {
             var consulta = from datos in this.context.Apuntados
@@ -337,6 +366,13 @@ namespace ProyectoMaster.Repositories
                 Seed = seed,
             };
             this.context.Apuntados.Add(ApuntadoNuevo);
+            this.context.SaveChanges();
+        }
+
+        public void DeleteApuntado(int idinscripcion)
+        {
+            Apuntado apuntadoelim = this.GetApuntadoById(idinscripcion);
+            this.context.Apuntados.Remove(apuntadoelim);
             this.context.SaveChanges();
         }
         public void UpdateApuntado(int idinscripcion, int idtorneo, int idjugador, int puesto, string record, int seed)
@@ -387,6 +423,12 @@ namespace ProyectoMaster.Repositories
 
             return VJugadores;
         }
+        public void DeleteJugador(int idjugador)
+        {
+            Jugador jugadorelim = this.GetJugadorById(idjugador);
+            this.context.Jugadores.Remove(jugadorelim);
+            this.context.SaveChanges();
+        }
         public Jugador GetJugadorById(int idjugador)
         {
             var consulta = from datos in this.context.Jugadores
@@ -394,7 +436,7 @@ namespace ProyectoMaster.Repositories
                            select datos;
             return consulta.SingleOrDefault();
         }
-        public void InsertJugador(int idjugador, string nick, string region, string nombre, string email, string rol, string equipo)
+        public void InsertJugador(int idjugador, string nick, string region, string nombre, string email, string password, string rol, string equipo)
         {
             Jugador JugadorNuevo = new Jugador
             {
@@ -403,6 +445,7 @@ namespace ProyectoMaster.Repositories
                 Region = region,
                 Nombre = nombre,
                 Email = email,
+                Password = password,
                 Rol = rol,
                 Equipo = equipo
             };

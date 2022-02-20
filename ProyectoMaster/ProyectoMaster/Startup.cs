@@ -7,6 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ProyectoMaster.Data;
+using ProyectoMaster.Helpers;
+using ProyectoMaster.Providers;
 using ProyectoMaster.Repositories;
 using System;
 using System.Collections.Generic;
@@ -41,6 +43,8 @@ namespace ProyectoMaster
             string cadena = this.Configuration.GetConnectionString("cadenatajamar");
             
             services.AddTransient<RepositoryTorneos>();
+            services.AddSingleton<HelperUploadFiles>();
+            services.AddSingleton<PathProvider>();
             services.AddDbContext<TorneosContext>(options => options.UseSqlServer(cadena));
             services.AddControllersWithViews
                 (options => options.EnableEndpointRouting = false)

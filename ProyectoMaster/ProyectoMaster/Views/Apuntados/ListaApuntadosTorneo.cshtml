@@ -61,15 +61,19 @@
     @foreach (VistaApuntadosJugadores vista in @Model)
     {
         {
-            char[] record;
-            record = vista.Record.ToCharArray();
-            string stringwins = record[0].ToString();
-            string stringloses = record[2].ToString();
-            double wins = Double.Parse(stringwins);
-            double loses = Double.Parse(stringloses);
-            double games = wins + loses;
-            winrate = (wins / games) * 100;
-            winrate = (Math.Round(winrate, 0));
+            if(vista.Record != "0")
+            {
+                char[] record;
+                record = vista.Record.ToCharArray();
+                string stringwins = record[0].ToString();
+                string stringloses = record[2].ToString();
+                double wins = Double.Parse(stringwins);
+                double loses = Double.Parse(stringloses);
+                double games = wins + loses;
+                winrate = (wins / games) * 100;
+                winrate = (Math.Round(winrate, 0));
+            }
+            
         }
         @if (num % 2 == 0)
         {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoMaster.Models;
 using ProyectoMaster.Repositories;
@@ -52,6 +53,8 @@ namespace ProyectoMaster.Controllers
                 , userPrincipal);
                 string controller = HttpContext.Request.Cookies["controller"];
                 string action = HttpContext.Request.Cookies["action"];
+                HttpContext.Session.SetString("Rol", jug.Rol);
+
 
                 return RedirectToAction(action, controller);
 
