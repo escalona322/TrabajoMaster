@@ -4,7 +4,7 @@
     <h1>No hay sets registrados de este apuntado</h1>
     <a class="btn btn-primary"
        asp-controller="Torneos"
-       asp-action="ListaTorneos">
+       asp-action="ListaTorneosAdmin">
         Volver
     </a>
 }
@@ -35,9 +35,16 @@ else
             <div class="col my-3">
                 <a class="btn btn-outline-danger"
                    asp-controller="Apuntados"
-                   asp-action="ListaApuntadosTorneo"
+                   asp-action="ListaApuntadosAdmin"
                    asp-route-idtorneo="@set.IdTorneo">
                     Volver
+                </a>
+                <a class="btn btn-outline-danger"
+                   asp-controller="Sets"
+                   asp-action="EditarSet"
+                   asp-route-idset="@set.IdSet"
+                   asp-route-idtorneo="@set.IdTorneo">
+                    Editar
                 </a>
 
             </div>

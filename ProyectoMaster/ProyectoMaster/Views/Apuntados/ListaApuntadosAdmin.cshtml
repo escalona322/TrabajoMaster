@@ -44,23 +44,28 @@
            <div class="col my-3">
                Torneo: @vista.IdTorneo
            </div>
-            <div class="col">
+           <div class="col">
 
-                    <a asp-controller="Apuntados"
-                       asp-action="EliminarApuntado"
-                       asp-route-idapuntado="@vista.IdApuntado"
-                        class="btn btn-secondary" style="width: 5em; height:2em">
-                        Eliminar
-                    </a>
+               <a asp-controller="Apuntados"
+                  asp-action="EliminarApuntado"
+                  asp-route-idapuntado="@vista.IdApuntado"
+                  class="btn btn-secondary" style="width: 5em; height:2em">
+                   Eliminar
+               </a>
 
-                    <a asp-controller="Apuntados"
-                       asp-action="EditarApuntado"
-                       asp-route-idapuntado="@vista.IdApuntado"
-                       class="btn btn-secondary" style="width: 5em; height:2em">
-                        Editar
-                    </a>
-
-            </div>
+               <a asp-controller="Apuntados"
+                  asp-action="EditarApuntado"
+                  asp-route-idapuntado="@vista.IdApuntado"
+                  class="btn btn-secondary" style="width: 5em; height:2em">
+                   Editar
+               </a>
+               <a asp-controller="Sets"
+                  asp-action="ListaSetsApuntadoAdmin"
+                  asp-route-idap="@vista.IdApuntado"
+                  class="btn btn-secondary" style="width: 5em; height:2em">
+                   Sets
+               </a>
+           </div>
 
 
 
@@ -111,7 +116,13 @@
                    class="btn btn-warning" style="width: 5em; height:2em">
                     Editar
                 </a>
-
+                <a asp-controller="Sets"
+                   asp-action="ListaSetsApuntadoAdmin"
+                   asp-route-idapuntado="@vista.IdApuntado"
+                   
+                   class="btn btn-warning" style="width: 5em; height:2em">
+                    Sets
+                </a>
             </div>
 
     </div>

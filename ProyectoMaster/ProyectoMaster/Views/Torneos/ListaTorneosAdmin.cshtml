@@ -96,9 +96,17 @@
                             <div class="col">
                                 <a class="btn btn-primary"
                                    asp-controller="Apuntados"
-                                   asp-action="ListaApuntadosTorneo"
+                                   asp-action="ListaApuntadosAdmin"
                                    asp-route-idtorneo="@torneo.IdTorneo">
                                     Ver apuntados
+                                </a>
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-success"
+                                   asp-controller="Sets"
+                                   asp-action="NuevoSet"
+                                   asp-route-idtorneo="@torneo.IdTorneo">
+                                    Insertar Set
                                 </a>
                             </div>
                         </div>

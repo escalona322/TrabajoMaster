@@ -21,10 +21,14 @@ namespace ProyectoMaster.Controllers
             return View();
         }
         
-        public IActionResult EditarSet(int idset)
+        public IActionResult EditarSet(int idset, int idtorneo)
         {
             Set setEditar = this.repo.GetSetById(idset);
-            return View(setEditar);
+            List<VistaApuntadosTorneo> apuntados = this.repo.GetVApuntadosByTorneoNoPag(idtorneo);
+            ViewData["RONDA"] = setEditar.Ronda;
+            ViewData["RESULTADO"] = setEditar.Resultado;
+            ViewData["IDTORNEO"] = idtorneo;
+            return View(apuntados);
         }
         [HttpPost]
         public IActionResult EditarSet(int idset, int ap1,
@@ -34,8 +38,8 @@ namespace ProyectoMaster.Controllers
             this.repo.UpdateSet(idset, ap1,
             ap2, apganador, resultado,
             ronda, idtorneo);
-            return RedirectToAction("ListaSetsTorneo",
-                new { idtorneo = idtorneo }
+            return RedirectToAction("ListaSetsApuntadoAdmin",
+                new {idap = apganador }
                );
         }
 
@@ -61,6 +65,11 @@ namespace ProyectoMaster.Controllers
         }
 
         public IActionResult ListaSetsApuntado(int idap)
+        {
+            List<VistaSetFormateado> vistaSets = this.repo.GetSetsFormatByIdApuntado(idap);
+            return View(vistaSets);
+        }
+        public IActionResult ListaSetsApuntadoAdmin(int idap)
         {
             List<VistaSetFormateado> vistaSets = this.repo.GetSetsFormatByIdApuntado(idap);
             return View(vistaSets);

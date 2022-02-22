@@ -48,10 +48,19 @@ namespace ProyectoMaster.Controllers
       
             return View(apuntados);
         }
-        public IActionResult ListaApuntadosAdmin()
+        public IActionResult ListaApuntadosAdmin(int? idtorneo)
         {
-            List<VistaApuntadosTorneo> apuntados = this.repo.GetVApuntados();
-            return View(apuntados);
+            if(idtorneo== null)
+            {
+                List<VistaApuntadosTorneo> apuntados = this.repo.GetVApuntados();
+                return View(apuntados);
+            }
+            else
+            {
+                List<VistaApuntadosTorneo> apuntadostor = this.repo.GetVApuntadosByTorneoNoPag(idtorneo.Value);
+                return View(apuntadostor);
+            }
+            
         }
 
         [AuthorizeJugadores]
@@ -93,7 +102,7 @@ namespace ProyectoMaster.Controllers
         public IActionResult EliminarApuntado(int idapuntado)
         {
             this.repo.DeleteApuntado(idapuntado);
-            return RedirectToAction("ListaApuntadosAdmin");
+            return RedirectToAction("ListaTorneosAdmin", controllerName:"Torneos");
         }
     }
 }

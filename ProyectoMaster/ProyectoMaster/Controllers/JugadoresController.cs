@@ -81,6 +81,21 @@ namespace ProyectoMaster.Controllers
             Jugador jug = this.repo.GetJugadorById(idjugador);
             ViewData["SETS"] = Sets;
             ViewData["TORNEOS"] = TorneosJugador;
+            int setganados = 0;
+            foreach (VistaSetFormateado set in Sets)
+            {
+                if (set.NickGanador == jug.Nick)
+                {
+                    setganados += 1;
+                }
+            }
+            ViewData["SETS"] = Sets;
+            ViewData["TORNEOS"] = TorneosJugador;
+            ViewData["SETSGANADOS"] = setganados;
+            ViewData["NUMSETS"] = Sets.Count();
+            double winrate = ((double)setganados / (double)Sets.Count()) * 100;
+
+            ViewData["WINRATE"] = winrate;
             return View(jug);
         }
 
@@ -90,9 +105,23 @@ namespace ProyectoMaster.Controllers
             int idjugador = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
             List<Torneo> TorneosJugador = this.repo.GetTorneosByIdJugador(idjugador);
             List<VistaSetFormateado> Sets = this.repo.GetSetsFormatByIdJugador(idjugador);
+            
             Jugador jug = this.repo.GetJugadorById(idjugador);
+            int setganados = 0;
+            foreach(VistaSetFormateado set in Sets)
+            {
+                if(set.NickGanador == jug.Nick)
+                {
+                    setganados += 1;
+                }
+            }
             ViewData["SETS"] = Sets;
             ViewData["TORNEOS"] = TorneosJugador;
+            ViewData["SETSGANADOS"] = setganados;
+            ViewData["NUMSETS"] = Sets.Count();
+            double winrate = ((double)setganados / (double)Sets.Count()) * 100;
+           
+            ViewData["WINRATE"] = winrate;
             return View(jug);
         }
 
@@ -108,7 +137,7 @@ namespace ProyectoMaster.Controllers
             int idjugMax = this.repo.GetJugadorMaxId()+1;
             this.repo.InsertJugador(idjugMax, nick,
             region, nombre, email, password, rol, equipo);
-            return RedirectToAction("ListaJugadores");
+            return RedirectToAction("MiPerfil");
         }
         public IActionResult EliminarJugador(int idjugador)
         {

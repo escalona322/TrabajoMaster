@@ -486,3 +486,5 @@ D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\
 D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\ProyectoMaster.genruntimeconfig.cache
 D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Jugadores\ListaJugadoresAdmin.cshtml.g.cs
 D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Torneos\ListaTorneosAdmin.cshtml.g.cs
+D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\ProyectoMaster.csproj.AssemblyReference.cache
+D:\TrabajosMaster\ProyectoMaster\ProyectoMaster\ProyectoMaster\obj\Debug\net5.0\Razor\Views\Sets\ListaSetsApuntadoAdmin.cshtml.g.cs

@@ -38,7 +38,7 @@
             @{
                 if (sets.Count == 0)
                 {
-                    <div class="row">
+                    <div class="row mx-2">
                         <h2>Este jugador no tiene sets guardados</h2>
                     </div>
                 }
@@ -47,7 +47,10 @@
                     <div style="background-color: lightgreen">
                         <h1 class="text-center"> SETS</h1>
                     </div>
+                    <div class="row mx-2">
+                        <h3 class="text-center"> @sets.Count sets jugados, @ViewData["SETSGANADOS"] Victorias | Winrate: @ViewData["WINRATE"]</h3>
 
+                    </div>
                     int contador = 0;
                     @foreach (VistaSetFormateado set in sets)
                     {
